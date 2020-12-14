@@ -1,0 +1,13 @@
+{
+    "name": "jp.sinoa.penguinbox",
+    "displayName": "PenguinBox",
+    "version": "0.0.1",
+    "unity": "2019.4",
+    "description": "This package provides Game develop support.",
+    "author": {
+        "name": "Sinoa",
+        "email": "sinoa.dev@gmail.com"
+    },
+    "category": "ContentDelivery",
+    "type": "library"
+}
