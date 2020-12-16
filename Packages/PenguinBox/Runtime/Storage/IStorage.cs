@@ -21,7 +21,7 @@ namespace PenguinBox.Storage
     /// <summary>
     /// ある特定コンテンツの貯蔵機能を提供するインターフェイスです
     /// </summary>
-    public interface IContentStorage
+    public interface IStorage
     {
         /// <summary>
         /// このストレージの名前
@@ -44,7 +44,7 @@ namespace PenguinBox.Storage
         /// <param name="contentUri">ストリームとして開くコンテンツURI</param>
         /// <param name="access">指定されたコンテンツURIに対するアクセス方法</param>
         /// <returns>正しくストリームを開けた場合はストリームの参照を返します。開けなかった場合は null を返します</returns>
-        Stream Open(Uri contentUri, ContentStorageAccess access);
+        Stream Open(Uri contentUri, StorageAccess access);
 
 
         /// <summary>

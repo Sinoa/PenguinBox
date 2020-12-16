@@ -22,7 +22,7 @@ namespace PenguinBox.Storage
     /// コンテンツストレージへのアクセス方法を表します
     /// </summary>
     [Flags]
-    public enum ContentStorageAccess : byte
+    public enum StorageAccess : byte
     {
         /// <summary>
         /// 読み取りとしてアクセスします
