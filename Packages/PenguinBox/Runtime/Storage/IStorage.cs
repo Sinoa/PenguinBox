@@ -42,9 +42,10 @@ namespace PenguinBox.Storage
         /// 指定されたコンテンツURIのコンテンツをストリームとして開きます。
         /// </summary>
         /// <param name="contentUri">ストリームとして開くコンテンツURI</param>
+        /// <param name="mode">指定されたコンテンツURIに対するモード</param>
         /// <param name="access">指定されたコンテンツURIに対するアクセス方法</param>
         /// <returns>正しくストリームを開けた場合はストリームの参照を返します。開けなかった場合は null を返します</returns>
-        Stream Open(Uri contentUri, StorageAccess access);
+        Stream Open(Uri contentUri, FileMode mode, FileAccess access);
 
 
         /// <summary>

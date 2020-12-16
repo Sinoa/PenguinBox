@@ -38,9 +38,9 @@ namespace PenguinBox.Catalog
         Uri RemoteUri { get; }
 
         /// <summary>
-        /// アイテムがデプロイされるローカルURI
+        /// アイテムがデプロイされるコンテンツURI
         /// </summary>
-        Uri LocalUri { get; }
+        Uri ContentUri { get; }
 
         /// <summary>
         /// アイテムのCRC値（CRC64Ecma）
