@@ -36,6 +36,11 @@ namespace PenguinBox.Fetcher
         RequestError,
 
         /// <summary>
+        /// フェッチの要求にタイムアウトエラーが発生しました
+        /// </summary>
+        Timeout,
+
+        /// <summary>
         /// リモートにコンテンツが見つかりませんでした
         /// </summary>
         RemoteContentNotFound,
