@@ -25,7 +25,7 @@ namespace PenguinBox.Fetcher
         /// <summary>
         /// フェッチするコンテンツの長さが検出されたイベントを処理します
         /// </summary>
-        /// <param name="contentLength">検出されたコンテンツの長さ</param>
+        /// <param name="contentLength">検出されたコンテンツの長さ。不明な場合は -1 が渡されます。</param>
         void OnContentLengthDetected(long contentLength);
 
 
