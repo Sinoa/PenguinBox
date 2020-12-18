@@ -17,7 +17,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace PenguinBox.Fetcher
 {
@@ -27,17 +26,56 @@ namespace PenguinBox.Fetcher
     public class HttpFetcher : IFetcher
     {
         /// <summary>
+        /// 最低限必要な受信バッファサイズ
+        /// </summary>
+        public const int MinimumReceiveBufferSize = 1 << 10;
+
+        private const int DefaultTimeout = 5000;
+        private const int DefaultReceiveBufferSize = 1 << 20;
+
+        private int timeout;
+        private int receiveBufferSize;
+
+
+
+        /// <summary>
+        /// 要求が返ってくるまでのタイムアウト時間（ms）
+        /// </summary>
+        public int Timeout { get => timeout; set => SetTimeout(value); }
+
+
+        /// <summary>
+        /// 受信バッファのサイズ
+        /// </summary>
+        public int ReceiveBufferSize { get => receiveBufferSize; set => SetReceiveBufferSize(value); }
+
+
+
+        /// <summary>
+        /// HttpFetcher クラスのインスタンスを初期化します
+        /// </summary>
+        public HttpFetcher()
+        {
+            Timeout = DefaultTimeout;
+            ReceiveBufferSize = DefaultReceiveBufferSize;
+        }
+
+
+        /// <summary>
         /// リモートからコンテンツをフェッチします
         /// </summary>
         /// <param name="remoteUri">フェッチするリモートURI</param>
         /// <param name="outStream">フェッチしたデータを出力する出力先ストリーム</param>
         /// <param name="listener">フェッチイベントを監視するリスナー</param>
         /// <param name="token">キャンセルを受け付けるためのトークン</param>
+        /// <exception cref="ArgumentNullException">remoteUri または outStream または listener が null です</exception>
+        /// <exception cref="ArgumentException">出力ストリームの書き込みが出来ません</exception>
         public void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
         {
             ThrowIfArgumentNull(remoteUri, nameof(remoteUri));
             ThrowIfArgumentNull(outStream, nameof(outStream));
             ThrowIfArgumentNull(listener, nameof(listener));
+            ThrowIfOutStreamCanNotWrite(outStream, nameof(outStream));
 
 
             if (token.IsCancellationRequested)
@@ -47,14 +85,8 @@ namespace PenguinBox.Fetcher
             }
 
 
-            var request = WebRequest.CreateHttp(remoteUri);
-            request.ContinueTimeout = 1000;
-            HttpWebResponse response;
-            try
-            {
-                response = (HttpWebResponse)request.GetResponse();
-            }
-            catch (WebException error)
+            var request = CreateRequest(remoteUri);
+            if (!TryGetResponse(request, out var response, out var error))
             {
                 if (error.Status == WebExceptionStatus.Timeout)
                 {
@@ -63,28 +95,99 @@ namespace PenguinBox.Fetcher
                 }
 
 
-                return;
+                // 404 Status = 'NotFound.' can not retryable.
+                // 4xx Status = 'Client problem.' can not retryable.
+                // 5xx Status = 'Server problem.' can retryable.
+                // xxx Status = '??? unknown...' can retryable.
+                var errorResponse = (HttpWebResponse)error.Response;
+                var errorNumber = (int)errorResponse.StatusCode / 100;
+                if (errorNumber == 4)
+                {
+                    if (errorResponse.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        listener.OnError(FetchErrorReason.RemoteContentNotFound, error);
+                        return;
+                    }
+                    else
+                    {
+                        listener.OnError(FetchErrorReason.RequestError, error);
+                        return;
+                    }
+                }
+                else if (errorNumber == 5)
+                {
+                    listener.OnError(FetchErrorReason.RemoteError, error);
+                    return;
+                }
+                else
+                {
+                    listener.OnError(FetchErrorReason.Unknown, error);
+                    return;
+                }
             }
 
 
+            listener.OnContentLengthDetected(response.ContentLength);
+
+
+            using (response)
             using (var stream = response.GetResponseStream())
             {
-                var buffer = new byte[1024];
+                var buffer = new byte[ReceiveBufferSize];
                 int readSize = 0;
                 while ((readSize = stream.Read(buffer, 0, buffer.Length)) > 0)
                 {
                     outStream.Write(buffer, 0, readSize);
+                    listener.OnContentReceiving(buffer, 0, readSize);
                 }
             }
         }
 
 
-        private bool TryGetResponse(HttpWebRequest request, out HttpWebResponse response, out WebException error)
+        #region private utility
+        private HttpWebRequest CreateRequest(Uri uri)
         {
-            throw new NotImplementedException();
+            var request = WebRequest.CreateHttp(uri);
+            request.Timeout = Timeout;
+            return request;
         }
 
 
+        private void SetTimeout(int timeout)
+        {
+            ThrowIfTimeoutOutOfRange(timeout, nameof(timeout));
+            this.timeout = timeout;
+        }
+
+
+        private void SetReceiveBufferSize(int bufferSize)
+        {
+            ThrowIfReceiveBufferSizeOutOfRange(bufferSize, nameof(bufferSize));
+            receiveBufferSize = bufferSize;
+        }
+
+
+        private bool TryGetResponse(HttpWebRequest request, out HttpWebResponse response, out WebException error)
+        {
+            response = null;
+            error = null;
+
+
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+                return true;
+            }
+            catch (WebException exception)
+            {
+                error = exception;
+                return false;
+            }
+        }
+        #endregion
+
+
+        #region Exception thrower and builder
         private void ThrowIfArgumentNull(object argument, string name)
         {
             if (argument == null)
@@ -92,5 +195,34 @@ namespace PenguinBox.Fetcher
                 throw new ArgumentNullException(name);
             }
         }
+
+
+        private void ThrowIfOutStreamCanNotWrite(Stream stream, string name)
+        {
+            if (!stream.CanWrite)
+            {
+                var message = $"出力ストリームの書き込みが出来ません";
+                throw new ArgumentException(message, name);
+            }
+        }
+
+
+        private void ThrowIfTimeoutOutOfRange(int timeout, string name)
+        {
+            if (timeout < 0 && timeout != System.Threading.Timeout.Infinite)
+            {
+                throw new ArgumentOutOfRangeException(name);
+            }
+        }
+
+
+        private void ThrowIfReceiveBufferSizeOutOfRange(int size, string name)
+        {
+            if (size < MinimumReceiveBufferSize)
+            {
+                throw new ArgumentOutOfRangeException(name);
+            }
+        }
+        #endregion
     }
 }

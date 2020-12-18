@@ -16,47 +16,47 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PenguinBox.System
+namespace PenguinBox.Core
 {
     /// <summary>
-    /// PenguinBox システムが発生するあらゆる例外の基底クラスです
+    /// 無効なストレージの場合の例外クラスです
     /// </summary>
     [Serializable]
-    public class PenguinBoxException : Exception
+    public class InvalidStorageException : PenguinBoxException
     {
         /// <summary>
-        /// PenguinBoxException クラスのインスタンスを初期化します
+        /// InvalidStorageException クラスのインスタンスを初期化します
         /// </summary>
-        public PenguinBoxException()
+        public InvalidStorageException()
         {
         }
 
 
         /// <summary>
-        /// PenguinBoxException クラスのインスタンスを初期化します
+        /// InvalidStorageException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
-        public PenguinBoxException(string message) : base(message)
+        public InvalidStorageException(string message) : base(message)
         {
         }
 
 
         /// <summary>
-        /// PenguinBoxException クラスのインスタンスを初期化します
+        /// InvalidStorageException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
         /// <param name="innerException">例外が発生した原因となった例外</param>
-        public PenguinBoxException(string message, Exception innerException) : base(message, innerException)
+        public InvalidStorageException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
 
         /// <summary>
-        /// シリアル化したデータを使用して PenguinBoxException クラスのインスタンスを初期化します
+        /// シリアル化したデータを使用して InvalidStorageException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="serializationInfo">スローされている例外に関するシリアル化済みオブジェクトデータを保持している SerializationInfo</param>
         /// <param name="streamingContext">転送元または転送先についてのコンテキスト情報を含む StreamingContext</param>
-        protected PenguinBoxException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        protected InvalidStorageException(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
         }
     }

@@ -31,14 +31,14 @@ namespace PenguinBox.Fetcher
         Cancel,
 
         /// <summary>
-        /// フェッチのリクエストにエラーが発生しました
-        /// </summary>
-        RequestError,
-
-        /// <summary>
         /// フェッチの要求にタイムアウトエラーが発生しました
         /// </summary>
         Timeout,
+
+        /// <summary>
+        /// フェッチのリクエストにエラーが発生しました
+        /// </summary>
+        RequestError,
 
         /// <summary>
         /// リモートにコンテンツが見つかりませんでした

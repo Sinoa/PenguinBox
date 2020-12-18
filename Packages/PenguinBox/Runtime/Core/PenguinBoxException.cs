@@ -16,47 +16,47 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PenguinBox.System
+namespace PenguinBox.Core
 {
     /// <summary>
-    /// ストレージが既に存在している場合の例外クラスです
+    /// PenguinBox システムが発生するあらゆる例外の基底クラスです
     /// </summary>
     [Serializable]
-    public class StorageAlreadyExistsException : PenguinBoxException
+    public class PenguinBoxException : Exception
     {
         /// <summary>
-        /// StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// PenguinBoxException クラスのインスタンスを初期化します
         /// </summary>
-        public StorageAlreadyExistsException()
+        public PenguinBoxException()
         {
         }
 
 
         /// <summary>
-        /// StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// PenguinBoxException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
-        public StorageAlreadyExistsException(string message) : base(message)
+        public PenguinBoxException(string message) : base(message)
         {
         }
 
 
         /// <summary>
-        /// StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// PenguinBoxException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
         /// <param name="innerException">例外が発生した原因となった例外</param>
-        public StorageAlreadyExistsException(string message, Exception innerException) : base(message, innerException)
+        public PenguinBoxException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
 
         /// <summary>
-        /// シリアル化したデータを使用して StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// シリアル化したデータを使用して PenguinBoxException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="serializationInfo">スローされている例外に関するシリアル化済みオブジェクトデータを保持している SerializationInfo</param>
         /// <param name="streamingContext">転送元または転送先についてのコンテキスト情報を含む StreamingContext</param>
-        protected StorageAlreadyExistsException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        protected PenguinBoxException(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
         }
     }

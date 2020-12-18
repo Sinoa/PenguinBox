@@ -16,48 +16,49 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PenguinBox.System
+namespace PenguinBox.Core
 {
     /// <summary>
-    /// 無効なストレージの場合の例外クラスです
+    /// ストレージを見つけられなかった場合の例外クラスです
     /// </summary>
     [Serializable]
-    public class InvalidStorageException : PenguinBoxException
+    public class StorageNotFoundException : PenguinBoxException
     {
         /// <summary>
-        /// InvalidStorageException クラスのインスタンスを初期化します
+        /// StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
-        public InvalidStorageException()
+        public StorageNotFoundException()
         {
         }
 
 
         /// <summary>
-        /// InvalidStorageException クラスのインスタンスを初期化します
+        /// StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
-        public InvalidStorageException(string message) : base(message)
+        public StorageNotFoundException(string message) : base(message)
         {
         }
 
 
         /// <summary>
-        /// InvalidStorageException クラスのインスタンスを初期化します
+        /// StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
         /// <param name="innerException">例外が発生した原因となった例外</param>
-        public InvalidStorageException(string message, Exception innerException) : base(message, innerException)
+        public StorageNotFoundException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
 
         /// <summary>
-        /// シリアル化したデータを使用して InvalidStorageException クラスのインスタンスを初期化します
+        /// シリアル化したデータを使用して StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="serializationInfo">スローされている例外に関するシリアル化済みオブジェクトデータを保持している SerializationInfo</param>
         /// <param name="streamingContext">転送元または転送先についてのコンテキスト情報を含む StreamingContext</param>
-        protected InvalidStorageException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        protected StorageNotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
+            throw new NotImplementedException();
         }
     }
 }

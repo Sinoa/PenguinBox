@@ -30,6 +30,16 @@ namespace PenguinBox.Fetcher
 
 
         /// <summary>
+        /// フェッチ中の受信中イベントを処理します
+        /// </summary>
+        /// <param name="buffer">フェッチに使用しているバッファ</param>
+        /// <param name="index">フェッチした有効データが存在するバッファ内のインデックス</param>
+        /// <param name="length">フェッチした有効データが存在するバッファ内の長さ</param>
+        /// <exception cref="ArgumentOutOfRangeException">指定された範囲がバッファの境界を超えています</exception>
+        void OnContentReceiving(byte[] buffer, int index, int length);
+
+
+        /// <summary>
         /// フェッチエラーが発生したイベントを処理します
         /// </summary>
         /// <param name="reson">エラーの理由</param>
