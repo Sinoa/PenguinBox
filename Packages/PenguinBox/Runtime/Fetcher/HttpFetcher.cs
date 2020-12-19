@@ -71,6 +71,7 @@ namespace PenguinBox.Fetcher
         /// <param name="token">キャンセルを受け付けるためのトークン</param>
         /// <exception cref="ArgumentNullException">remoteUri または outStream または listener が null です</exception>
         /// <exception cref="ArgumentException">出力ストリームの書き込みが出来ません</exception>
+        /// <exception cref="SchemeNotSupportedException">指定されたスキームをサポートしていません</exception>
         public void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
         {
             ThrowIfArgumentNull(remoteUri, nameof(remoteUri));
