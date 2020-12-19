@@ -130,8 +130,8 @@ namespace PenguinBox.Storage
         /// <exception cref="ArgumentNullException">contentUri が null です</exception>
         public string GetNativePath(Uri contentUri)
         {
-            var uriLocalPath = (contentUri ?? throw new ArgumentNullException(nameof(contentUri))).LocalPath.TrimStart('/');
-            return Path.Combine(GetBaseDirectoryPath(), uriLocalPath).Replace("\\", "/");
+            var uriAbsolutePath = (contentUri ?? throw new ArgumentNullException(nameof(contentUri))).AbsolutePath.TrimStart('/');
+            return Path.Combine(GetBaseDirectoryPath(), uriAbsolutePath).Replace("\\", "/");
         }
 
 
