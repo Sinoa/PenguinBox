@@ -27,25 +27,30 @@ namespace PenguinBox.Catalog
         /// </summary>
         string Name { get; }
 
+
         /// <summary>
         /// アイテムのデータ長
         /// </summary>
         long ContentLength { get; }
+
 
         /// <summary>
         /// アイテムをフェッチする参照先リモートURI
         /// </summary>
         Uri RemoteUri { get; }
 
+
         /// <summary>
         /// アイテムがデプロイされるコンテンツURI
         /// </summary>
         Uri ContentUri { get; }
 
+
         /// <summary>
         /// アイテムのCRC値（CRC64Ecma）
         /// </summary>
         ulong Crc { get; }
+
 
         /// <summary>
         /// このアイテムが依存する別のアイテム名

@@ -23,6 +23,12 @@ namespace PenguinBox.Catalog
     public interface ICatalog
     {
         /// <summary>
+        /// カタログ名
+        /// </summary>
+        string Name { get; }
+
+
+        /// <summary>
         /// カタログに含まれるアイテム数
         /// </summary>
         int ItemCount { get; }
