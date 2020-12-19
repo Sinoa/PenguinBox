@@ -17,6 +17,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading;
+using PenguinBox.Core;
 
 namespace PenguinBox.Fetcher
 {
@@ -76,6 +77,7 @@ namespace PenguinBox.Fetcher
             ThrowIfArgumentNull(outStream, nameof(outStream));
             ThrowIfArgumentNull(listener, nameof(listener));
             ThrowIfOutStreamCanNotWrite(outStream, nameof(outStream));
+            ThrowIfSchemeNotSupported(remoteUri);
 
 
             if (token.IsCancellationRequested)
@@ -119,11 +121,10 @@ namespace PenguinBox.Fetcher
                     listener.OnError(FetchErrorReason.RemoteError, error);
                     return;
                 }
-                else
-                {
-                    listener.OnError(FetchErrorReason.Unknown, error);
-                    return;
-                }
+
+
+                listener.OnError(FetchErrorReason.Unknown, error);
+                return;
             }
 
 
@@ -133,10 +134,17 @@ namespace PenguinBox.Fetcher
             using (response)
             using (var stream = response.GetResponseStream())
             {
+                var readSize = 0;
                 var buffer = new byte[ReceiveBufferSize];
-                int readSize = 0;
                 while ((readSize = stream.Read(buffer, 0, buffer.Length)) > 0)
                 {
+                    if (token.IsCancellationRequested)
+                    {
+                        listener.OnError(FetchErrorReason.Cancel, null);
+                        return;
+                    }
+
+
                     outStream.Write(buffer, 0, readSize);
                     listener.OnContentReceiving(buffer, 0, readSize);
                 }
@@ -188,6 +196,16 @@ namespace PenguinBox.Fetcher
 
 
         #region Exception thrower and builder
+        private void ThrowIfSchemeNotSupported(Uri uri)
+        {
+            if (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps)
+            {
+                var message = $"指定されたスキーム '{uri.Scheme}' は対応していません。";
+                throw new SchemeNotSupportedException(message);
+            }
+        }
+
+
         private void ThrowIfArgumentNull(object argument, string name)
         {
             if (argument == null)
