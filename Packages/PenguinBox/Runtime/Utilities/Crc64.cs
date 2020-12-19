@@ -15,7 +15,7 @@
 
 using System;
 
-namespace PenguinBox.Securities
+namespace PenguinBox.Utilities
 {
     /// <summary>
     /// CRC64実装を提供します

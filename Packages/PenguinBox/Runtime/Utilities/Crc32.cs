@@ -15,7 +15,7 @@
 
 using System;
 
-namespace PenguinBox.Securities
+namespace PenguinBox.Utilities
 {
     /// <summary>
     /// CRC32実装を提供します
