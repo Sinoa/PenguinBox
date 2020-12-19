@@ -17,7 +17,7 @@ using System;
 using System.IO;
 using System.Threading;
 
-namespace PenguinBox.Fetcher
+namespace PenguinBox.Fetchers
 {
     /// <summary>
     /// リモートからコンテンツをフェッチするインターフェイスです

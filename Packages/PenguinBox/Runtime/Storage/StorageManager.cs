@@ -15,9 +15,9 @@
 
 using System;
 using System.Collections.Generic;
-using PenguinBox.Core;
+using PenguinBox.Cores;
 
-namespace PenguinBox.Storage
+namespace PenguinBox.Storages
 {
     /// <summary>
     /// PenguinBox システムが持つストレージを管理するクラスです

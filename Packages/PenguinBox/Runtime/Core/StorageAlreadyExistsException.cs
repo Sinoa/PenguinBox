@@ -16,7 +16,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PenguinBox.Core
+namespace PenguinBox.Cores
 {
     /// <summary>
     /// ストレージが既に存在している場合の例外クラスです

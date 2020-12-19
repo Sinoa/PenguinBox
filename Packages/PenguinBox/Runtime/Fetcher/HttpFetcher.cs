@@ -18,7 +18,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 
-namespace PenguinBox.Fetcher
+namespace PenguinBox.Fetchers
 {
     /// <summary>
     /// HTTPまたはHTTPSを使用したコンテンツフェッチを行うクラスです

@@ -15,7 +15,7 @@
 
 using System;
 
-namespace PenguinBox.Catalog
+namespace PenguinBox.Catalogs
 {
     /// <summary>
     /// カタログに含まれるアイテムの情報を表現するインターフェイスです

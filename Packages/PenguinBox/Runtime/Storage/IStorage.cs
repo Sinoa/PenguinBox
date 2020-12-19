@@ -16,7 +16,7 @@
 using System;
 using System.IO;
 
-namespace PenguinBox.Storage
+namespace PenguinBox.Storages
 {
     /// <summary>
     /// ある特定コンテンツの貯蔵機能を提供するインターフェイスです

@@ -15,7 +15,7 @@
 
 using System.IO;
 
-namespace PenguinBox.Catalog
+namespace PenguinBox.Catalogs
 {
     /// <summary>
     /// ストリームからカタログを読み込むインターフェイスです
