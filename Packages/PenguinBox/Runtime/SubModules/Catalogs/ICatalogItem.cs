@@ -13,20 +13,48 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System.IO;
+using System;
 
-namespace PenguinBox.Catalogs
+namespace PenguinBox.SubModules.Catalogs
 {
     /// <summary>
-    /// ストリームからカタログを読み込むインターフェイスです
+    /// カタログに含まれるアイテムの情報を表現するインターフェイスです
     /// </summary>
-    public interface ICatalogReader
+    public interface ICatalogItem
     {
         /// <summary>
-        /// 指定されたストリームからカタログを読み込みます
+        /// アイテム名
         /// </summary>
-        /// <param name="stream">カタログのデータを読み込むストリーム</param>
-        /// <returns>正常に読み込まれた場合はカタログのインスタンスを返しますが、読み込まれなかった場合は null を返します</returns>
-        ICatalog ReadCatalog(Stream stream);
+        string Name { get; }
+
+
+        /// <summary>
+        /// アイテムのデータ長
+        /// </summary>
+        long ContentLength { get; }
+
+
+        /// <summary>
+        /// アイテムをフェッチする参照先リモートURI
+        /// </summary>
+        Uri RemoteUri { get; }
+
+
+        /// <summary>
+        /// アイテムがデプロイされるコンテンツURI
+        /// </summary>
+        Uri ContentUri { get; }
+
+
+        /// <summary>
+        /// アイテムのCRC値（CRC64Ecma）
+        /// </summary>
+        ulong Crc { get; }
+
+
+        /// <summary>
+        /// このアイテムが依存する別のアイテム名
+        /// </summary>
+        string[] DependentItemNames { get; }
     }
 }

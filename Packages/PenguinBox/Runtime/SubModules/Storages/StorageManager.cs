@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PenguinBox.Storages
+namespace PenguinBox.SubModules.Storages
 {
     /// <summary>
     /// PenguinBox システムが持つストレージを管理するクラスです

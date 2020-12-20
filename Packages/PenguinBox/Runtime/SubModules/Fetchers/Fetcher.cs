@@ -17,7 +17,7 @@ using System;
 using System.IO;
 using System.Threading;
 
-namespace PenguinBox.Fetchers
+namespace PenguinBox.SubModules.Fetchers
 {
     /// <summary>
     /// IFetcher インターフェイスを実装するフェッチャーの抽象クラスです。

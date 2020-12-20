@@ -15,7 +15,7 @@
 
 using System.Collections.Generic;
 
-namespace PenguinBox.Catalogs
+namespace PenguinBox.SubModules.Catalogs
 {
     /// <summary>
     /// 一覧を表現するインターフェイスです

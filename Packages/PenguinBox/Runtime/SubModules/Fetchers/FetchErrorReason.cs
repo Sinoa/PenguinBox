@@ -13,48 +13,41 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System;
-
-namespace PenguinBox.Catalogs
+namespace PenguinBox.SubModules.Fetchers
 {
     /// <summary>
-    /// カタログに含まれるアイテムの情報を表現するインターフェイスです
+    /// フェッチエラーの理由を表現しています
     /// </summary>
-    public interface ICatalogItem
+    public enum FetchErrorReason
     {
         /// <summary>
-        /// アイテム名
+        /// 特定不明なエラーが発生しました
         /// </summary>
-        string Name { get; }
-
+        Unknown,
 
         /// <summary>
-        /// アイテムのデータ長
+        /// フェッチのキャンセルをされました
         /// </summary>
-        long ContentLength { get; }
-
+        Cancel,
 
         /// <summary>
-        /// アイテムをフェッチする参照先リモートURI
+        /// フェッチの要求にタイムアウトエラーが発生しました
         /// </summary>
-        Uri RemoteUri { get; }
-
+        Timeout,
 
         /// <summary>
-        /// アイテムがデプロイされるコンテンツURI
+        /// フェッチのリクエストにエラーが発生しました
         /// </summary>
-        Uri ContentUri { get; }
-
+        RequestError,
 
         /// <summary>
-        /// アイテムのCRC値（CRC64Ecma）
+        /// リモートにコンテンツが見つかりませんでした
         /// </summary>
-        ulong Crc { get; }
-
+        RemoteContentNotFound,
 
         /// <summary>
-        /// このアイテムが依存する別のアイテム名
+        /// リモートのエラーが発生しました
         /// </summary>
-        string[] DependentItemNames { get; }
+        RemoteError,
     }
 }

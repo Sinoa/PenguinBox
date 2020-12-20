@@ -13,14 +13,14 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-namespace PenguinBox.Catalogs
+namespace PenguinBox.SubModules.Catalogs
 {
-    public struct ContentCatalog
+    public struct ContentPackage
     {
         public ulong Id;
         public string Name;
         public long Timestamp;
-        public int PackageCount;
-        public ContentPackage[] Packages;
+        public int ItemCount;
+        public ContentItem[] Items;
     }
 }
