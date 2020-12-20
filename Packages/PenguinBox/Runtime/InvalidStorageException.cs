@@ -16,7 +16,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PenguinBox.Cores
+namespace PenguinBox
 {
     /// <summary>
     /// 無効なストレージの場合の例外クラスです

@@ -16,7 +16,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PenguinBox.Cores
+namespace PenguinBox
 {
     /// <summary>
     /// PenguinBox システムが発生するあらゆる例外の基底クラスです
