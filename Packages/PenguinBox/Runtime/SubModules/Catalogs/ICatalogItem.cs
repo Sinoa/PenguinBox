@@ -41,7 +41,7 @@ namespace PenguinBox.SubModules.Catalogs
 
 
         /// <summary>
-        /// アイテムがデプロイされるコンテンツURI
+        /// アイテムがデプロイされるアセットURI
         /// </summary>
         Uri ContentUri { get; }
 

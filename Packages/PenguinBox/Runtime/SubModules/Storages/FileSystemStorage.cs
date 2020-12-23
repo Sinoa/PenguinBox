@@ -42,30 +42,30 @@ namespace PenguinBox.SubModules.Storages
 
 
         /// <summary>
-        /// 指定されたコンテンツURIのファイルまたはディレクトリが存在するか確認をします
+        /// 指定されたアセットURIのファイルまたはディレクトリが存在するか確認をします
         /// </summary>
-        /// <param name="contentUri">確認をするコンテンツのURI</param>
-        /// <returns>指定されたコンテンツURIにファイルまたはディレクトリがあれば true を、どちらも存在しない場合は false を返します</returns>
-        /// <exception cref="ArgumentNullException">contentUri が null です</exception>
-        public bool Exists(Uri contentUri)
+        /// <param name="assetUri">確認をするアセットのURI</param>
+        /// <returns>指定されたアセットURIにファイルまたはディレクトリがあれば true を、どちらも存在しない場合は false を返します</returns>
+        /// <exception cref="ArgumentNullException">assetUri が null です</exception>
+        public bool Exists(Uri assetUri)
         {
-            var nativePath = GetNativePath(contentUri);
+            var nativePath = GetNativePath(assetUri);
             return File.Exists(nativePath) || Directory.Exists(nativePath);
         }
 
 
         /// <summary>
-        /// 指定されたコンテンツURIのファイルをストリームとして開きます。
+        /// 指定されたアセットURIのファイルをストリームとして開きます。
         /// また、サブディレクトリが指定されている場合は内部でサブディレクトリの生成を行います。
         /// </summary>
-        /// <param name="contentUri">ストリームとして開くコンテンツURI</param>
-        /// <param name="mode">指定されたコンテンツURIに対するモード</param>
-        /// <param name="access">指定されたコンテンツURIに対するアクセス方法</param>
+        /// <param name="assetUri">ストリームとして開くアセットURI</param>
+        /// <param name="mode">指定されたアセットURIに対するモード</param>
+        /// <param name="access">指定されたアセットURIに対するアクセス方法</param>
         /// <returns>正しくストリームを開けた場合はストリームの参照を返します。開けなかった場合は null を返します</returns>
-        /// <exception cref="ArgumentNullException">contentUri が null です</exception>
-        public Stream Open(Uri contentUri, FileMode mode, FileAccess access)
+        /// <exception cref="ArgumentNullException">assetUri が null です</exception>
+        public Stream Open(Uri assetUri, FileMode mode, FileAccess access)
         {
-            var nativePath = GetNativePath(contentUri);
+            var nativePath = GetNativePath(assetUri);
             var fileName = Path.GetFileName(nativePath);
             var removeStartIndex = nativePath.LastIndexOf(fileName) - 1;
             var directoryPath = nativePath.Remove(removeStartIndex);
@@ -80,14 +80,14 @@ namespace PenguinBox.SubModules.Storages
 
 
         /// <summary>
-        /// 指定されたコンテンツURIのファイルまたはディレクトリを削除します。
-        /// ディレクトリとしてのコンテンツURIが指定された場合は、そのディレクトリのコンテンツもすべて削除されます。
+        /// 指定されたアセットURIのファイルまたはディレクトリを削除します。
+        /// ディレクトリとしてのアセットURIが指定された場合は、そのディレクトリのアセットもすべて削除されます。
         /// </summary>
-        /// <param name="contentUri">削除するコンテンツのURI</param>
-        /// <exception cref="ArgumentNullException">contentUri が null です</exception>
-        public void Delete(Uri contentUri)
+        /// <param name="assetUri">削除するアセットのURI</param>
+        /// <exception cref="ArgumentNullException">assetUri が null です</exception>
+        public void Delete(Uri assetUri)
         {
-            var nativePath = GetNativePath(contentUri);
+            var nativePath = GetNativePath(assetUri);
             if (File.Exists(nativePath))
             {
                 File.Delete(nativePath);
@@ -104,7 +104,7 @@ namespace PenguinBox.SubModules.Storages
 
 
         /// <summary>
-        /// このファイルシステムストレージが管理するディレクトリに含まれるすべてのコンテンツを削除します
+        /// このファイルシステムストレージが管理するディレクトリに含まれるすべてのアセットを削除します
         /// </summary>
         public void DeleteAll()
         {
@@ -123,14 +123,14 @@ namespace PenguinBox.SubModules.Storages
 
 
         /// <summary>
-        /// コンテンツURIからファイルシステムとしてのファイルパスを取得します
+        /// アセットURIからファイルシステムとしてのファイルパスを取得します
         /// </summary>
-        /// <param name="contentUri">ファイルパスとして取得するコンテンツURI</param>
-        /// <returns>指定されたコンテンツURIからファイルシステムとしてのファイルパスを返します</returns>
-        /// <exception cref="ArgumentNullException">contentUri が null です</exception>
-        public string GetNativePath(Uri contentUri)
+        /// <param name="assetUri">ファイルパスとして取得するアセットURI</param>
+        /// <returns>指定されたアセットURIからファイルシステムとしてのファイルパスを返します</returns>
+        /// <exception cref="ArgumentNullException">assetUri が null です</exception>
+        public string GetNativePath(Uri assetUri)
         {
-            var uriAbsolutePath = (contentUri ?? throw new ArgumentNullException(nameof(contentUri))).AbsolutePath.TrimStart('/');
+            var uriAbsolutePath = (assetUri ?? throw new ArgumentNullException(nameof(assetUri))).AbsolutePath.TrimStart('/');
             return Path.Combine(GetBaseDirectoryPath(), uriAbsolutePath).Replace("\\", "/");
         }
 

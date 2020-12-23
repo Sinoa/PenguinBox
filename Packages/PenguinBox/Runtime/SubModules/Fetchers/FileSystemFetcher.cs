@@ -35,7 +35,7 @@ namespace PenguinBox.SubModules.Fetchers
             var filePath = remoteUri.LocalPath;
             if (!File.Exists(filePath))
             {
-                listener.OnError(FetchErrorReason.RemoteContentNotFound, null);
+                listener.OnError(FetchErrorReason.RemoteAssetNotFound, null);
                 return;
             }
 
@@ -44,7 +44,9 @@ namespace PenguinBox.SubModules.Fetchers
             listener.OnContentLengthDetected(fileInfo.Length);
 
 
+#pragma warning disable IDE0063 // 単純な 'using' ステートメントを使用する
             using (var inputStream = fileInfo.OpenRead())
+#pragma warning restore IDE0063 // 単純な 'using' ステートメントを使用する
             {
                 var readSize = 0;
                 var buffer = new byte[1 << 20];

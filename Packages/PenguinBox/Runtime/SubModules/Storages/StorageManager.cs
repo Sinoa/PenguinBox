@@ -87,7 +87,7 @@ namespace PenguinBox.SubModules.Storages
             if (storage.Name == null)
             {
                 var message = "ストレージの名前が null です。";
-                throw new InvalidStorageException(message);
+                throw new ArgumentException(message);
             }
         }
 

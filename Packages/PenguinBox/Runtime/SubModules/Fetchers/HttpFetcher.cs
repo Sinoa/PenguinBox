@@ -21,7 +21,7 @@ using System.Threading;
 namespace PenguinBox.SubModules.Fetchers
 {
     /// <summary>
-    /// HTTPまたはHTTPSを使用したコンテンツフェッチを行うクラスです
+    /// HTTPまたはHTTPSを使用したアセットフェッチを行うクラスです
     /// </summary>
     public class HttpFetcher : Fetcher
     {
@@ -89,7 +89,7 @@ namespace PenguinBox.SubModules.Fetchers
                 {
                     if (errorResponse.StatusCode == HttpStatusCode.NotFound)
                     {
-                        listener.OnError(FetchErrorReason.RemoteContentNotFound, error);
+                        listener.OnError(FetchErrorReason.RemoteAssetNotFound, error);
                         return;
                     }
                     else

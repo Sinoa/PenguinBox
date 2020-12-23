@@ -41,9 +41,9 @@ namespace PenguinBox.SubModules.Fetchers
         RequestError,
 
         /// <summary>
-        /// リモートにコンテンツが見つかりませんでした
+        /// リモートにアセットが見つかりませんでした
         /// </summary>
-        RemoteContentNotFound,
+        RemoteAssetNotFound,
 
         /// <summary>
         /// リモートのエラーが発生しました

@@ -20,15 +20,15 @@ using System.Threading;
 namespace PenguinBox.SubModules.Fetchers
 {
     /// <summary>
-    /// リモートからコンテンツをフェッチするインターフェイスです
+    /// リモートからアセットをフェッチするインターフェイスです
     /// </summary>
     public interface IFetcher
     {
         /// <summary>
-        /// リモートからコンテンツのフェッチを行います
+        /// リモートからアセットのフェッチを行います
         /// </summary>
-        /// <param name="remoteUri">フェッチするコンテンツがあるリモートURI</param>
-        /// <param name="outStream">フェッチしたコンテンツの出力先ストリーム</param>
+        /// <param name="remoteUri">フェッチするアセットがあるリモートURI</param>
+        /// <param name="outStream">フェッチしたアセットの出力先ストリーム</param>
         /// <param name="listener">フェッチイベントを監視するリスナー</param>
         /// <param name="token">フェッチのキャンセル通知をするためのトークン</param>
         void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token);

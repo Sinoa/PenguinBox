@@ -23,9 +23,9 @@ namespace PenguinBox.SubModules.Fetchers
     public interface IFetcherEventListener
     {
         /// <summary>
-        /// フェッチするコンテンツの長さが検出されたイベントを処理します
+        /// フェッチするアセットの長さが検出されたイベントを処理します
         /// </summary>
-        /// <param name="contentLength">検出されたコンテンツの長さ。不明な場合は -1 が渡されます。</param>
+        /// <param name="contentLength">検出されたアセットのコンテンツ長。不明な場合は -1 が渡されます。</param>
         void OnContentLengthDetected(long contentLength);
 
 

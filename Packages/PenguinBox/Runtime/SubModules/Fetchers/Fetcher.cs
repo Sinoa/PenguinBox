@@ -25,7 +25,7 @@ namespace PenguinBox.SubModules.Fetchers
     public abstract class Fetcher : IFetcher
     {
         /// <summary>
-        /// リモートからコンテンツをフェッチします
+        /// リモートからアセットをフェッチします
         /// </summary>
         /// <param name="remoteUri">フェッチするリモートURI</param>
         /// <param name="outStream">フェッチしたデータを出力する出力先ストリーム</param>

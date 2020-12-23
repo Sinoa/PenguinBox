@@ -19,7 +19,7 @@ using System.IO;
 namespace PenguinBox.SubModules.Storages
 {
     /// <summary>
-    /// ある特定コンテンツの貯蔵機能を提供するインターフェイスです
+    /// ある特定アセットの貯蔵機能を提供するインターフェイスです
     /// </summary>
     public interface IStorage
     {
@@ -31,42 +31,42 @@ namespace PenguinBox.SubModules.Storages
 
 
         /// <summary>
-        /// 指定されたコンテンツURIのコンテンツがストレージに存在するか否か確認をします
+        /// 指定されたアセットURIのアセットがストレージに存在するか否か確認をします
         /// </summary>
-        /// <param name="contentUri">確認するコンテンツURI</param>
-        /// <returns>コンテンツが存在する場合は true を、存在しない場合は false を返します</returns>
-        bool Exists(Uri contentUri);
+        /// <param name="assetUri">確認するアセットURI</param>
+        /// <returns>アセットが存在する場合は true を、存在しない場合は false を返します</returns>
+        bool Exists(Uri assetUri);
 
 
         /// <summary>
-        /// 指定されたコンテンツURIのコンテンツをストリームとして開きます。
+        /// 指定されたアセットURIのアセットをストリームとして開きます。
         /// </summary>
-        /// <param name="contentUri">ストリームとして開くコンテンツURI</param>
-        /// <param name="mode">指定されたコンテンツURIに対するモード</param>
-        /// <param name="access">指定されたコンテンツURIに対するアクセス方法</param>
+        /// <param name="assetUri">ストリームとして開くアセットURI</param>
+        /// <param name="mode">指定されたアセットURIに対するモード</param>
+        /// <param name="access">指定されたアセットURIに対するアクセス方法</param>
         /// <returns>正しくストリームを開けた場合はストリームの参照を返します。開けなかった場合は null を返します</returns>
-        Stream Open(Uri contentUri, FileMode mode, FileAccess access);
+        Stream Open(Uri assetUri, FileMode mode, FileAccess access);
 
 
         /// <summary>
-        /// 指定されたコンテンツURIのコンテンツを削除をします
+        /// 指定されたアセットURIのアセットを削除をします
         /// </summary>
-        /// <param name="contentUri">削除するコンテンツURI</param>
-        void Delete(Uri contentUri);
+        /// <param name="assetUri">削除するアセットURI</param>
+        void Delete(Uri assetUri);
 
 
         /// <summary>
-        /// ストレージに含まれるすべてのコンテンツを削除します
+        /// ストレージに含まれるすべてのアセットを削除します
         /// </summary>
         void DeleteAll();
 
 
         /// <summary>
-        /// コンテンツURIからストレージが扱うネイティブパスを取得します。
+        /// アセットURIからストレージが扱うネイティブパスを取得します。
         /// ネイティブパスとはストレージがプラットフォームに直接使用するパスを指します。
         /// </summary>
-        /// <param name="contentUri">ネイティブパスとして</param>
+        /// <param name="assetUri">ネイティブパスとして</param>
         /// <returns>ネイティブパスの表現ができる場合はネイティブパスを返しますが、表現出来ない場合は null を返します</returns>
-        string GetNativePath(Uri contentUri);
+        string GetNativePath(Uri assetUri);
     }
 }
