@@ -17,6 +17,9 @@ using System;
 
 namespace PenguinBox.Utilities
 {
+    /// <summary>
+    /// 双方向エンディアン変換拡張関数実装クラスです
+    /// </summary>
     public static class EndiannessConverter
     {
         #region ToLittleEndian
