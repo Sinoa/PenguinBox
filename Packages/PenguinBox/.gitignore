@@ -1,8 +1,0 @@
-# General Directories and Files
-/.vs/
-/Runtime/.[Bb]in/
-/Runtime/.[Oo]bj/
-/*/[Bb]in/
-/*/[Oo]bj/
-*.user
-*.user.meta

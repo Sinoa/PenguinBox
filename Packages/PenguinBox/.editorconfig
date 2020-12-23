@@ -1,4 +1,0 @@
-﻿[*.cs]
-
-# IDE0063: 単純な 'using' ステートメントを使用する
-csharp_prefer_simple_using_statement = false:suggestion
