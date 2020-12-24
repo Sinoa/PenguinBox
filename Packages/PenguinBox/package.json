@@ -9,5 +9,8 @@
     "email": "sinoa.dev@gmail.com"
   },
   "category": "ContentDelivery",
-  "type": "library"
+  "type": "library",
+  "dependencies": {
+    "com.unity.modules.assetbundle": "1.0.0"
+  }
 }
