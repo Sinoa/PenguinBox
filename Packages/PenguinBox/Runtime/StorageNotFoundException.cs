@@ -58,7 +58,6 @@ namespace Sinoalmond.PenguinBox
         /// <param name="streamingContext">転送元または転送先についてのコンテキスト情報を含む StreamingContext</param>
         protected StorageNotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
-            throw new NotImplementedException();
         }
     }
 }
