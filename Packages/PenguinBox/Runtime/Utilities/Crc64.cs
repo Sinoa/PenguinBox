@@ -15,7 +15,7 @@
 
 using System;
 
-namespace PenguinBox.Utilities
+namespace Sinoalmond.PenguinBox.Utilities
 {
     /// <summary>
     /// CRC64実装を提供します

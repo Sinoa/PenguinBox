@@ -13,24 +13,41 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System;
-using System.IO;
-using System.Threading;
-
-namespace PenguinBox.SubModules.Fetchers
+namespace Sinoalmond.PenguinBox.Fetchers
 {
     /// <summary>
-    /// リモートからアセットをフェッチするインターフェイスです
+    /// フェッチエラーの理由を表現しています
     /// </summary>
-    public interface IFetcher
+    public enum FetchErrorReason
     {
         /// <summary>
-        /// リモートからアセットのフェッチを行います
+        /// 特定不明なエラーが発生しました
         /// </summary>
-        /// <param name="remoteUri">フェッチするアセットがあるリモートURI</param>
-        /// <param name="outStream">フェッチしたアセットの出力先ストリーム</param>
-        /// <param name="listener">フェッチイベントを監視するリスナー</param>
-        /// <param name="token">フェッチのキャンセル通知をするためのトークン</param>
-        void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token);
+        Unknown,
+
+        /// <summary>
+        /// フェッチのキャンセルをされました
+        /// </summary>
+        Cancel,
+
+        /// <summary>
+        /// フェッチの要求にタイムアウトエラーが発生しました
+        /// </summary>
+        Timeout,
+
+        /// <summary>
+        /// フェッチのリクエストにエラーが発生しました
+        /// </summary>
+        RequestError,
+
+        /// <summary>
+        /// リモートにアセットが見つかりませんでした
+        /// </summary>
+        RemoteAssetNotFound,
+
+        /// <summary>
+        /// リモートのエラーが発生しました
+        /// </summary>
+        RemoteError,
     }
 }

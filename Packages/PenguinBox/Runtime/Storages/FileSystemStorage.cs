@@ -16,7 +16,7 @@
 using System;
 using System.IO;
 
-namespace PenguinBox.SubModules.Storages
+namespace Sinoalmond.PenguinBox.Storages
 {
     /// <summary>
     /// 殆どのプラットフォームで動作するファイルシステムを使用したストレージクラスです

@@ -13,20 +13,14 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System;
-
-namespace PenguinBox.SubModules.Catalogs
+namespace Sinoalmond.PenguinBox.Catalogs
 {
-    public struct ContentItem
+    public struct ContentCatalog
     {
         public ulong Id;
         public string Name;
         public long Timestamp;
-        public long Length;
-        public Uri RemoteUri;
-        public Uri ContentUri;
-        public ulong Crc;
-        public byte[] Digest;
-        public ulong[] DependentContentIds;
+        public int PackageCount;
+        public ContentPackage[] Packages;
     }
 }

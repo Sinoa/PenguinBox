@@ -13,20 +13,14 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System.IO;
-
-namespace PenguinBox.SubModules.Catalogs
+namespace Sinoalmond.PenguinBox.Catalogs
 {
-    /// <summary>
-    /// ストリームからカタログを読み込むインターフェイスです
-    /// </summary>
-    public interface ICatalogReader
+    public struct ContentPackage
     {
-        /// <summary>
-        /// 指定されたストリームからカタログを読み込みます
-        /// </summary>
-        /// <param name="stream">カタログのデータを読み込むストリーム</param>
-        /// <returns>正常に読み込まれた場合はカタログのインスタンスを返しますが、読み込まれなかった場合は null を返します</returns>
-        ICatalog ReadCatalog(Stream stream);
+        public ulong Id;
+        public string Name;
+        public long Timestamp;
+        public int ItemCount;
+        public ContentItem[] Items;
     }
 }

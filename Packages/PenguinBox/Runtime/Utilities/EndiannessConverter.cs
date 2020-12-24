@@ -15,7 +15,7 @@
 
 using System;
 
-namespace PenguinBox.Utilities
+namespace Sinoalmond.PenguinBox.Utilities
 {
     /// <summary>
     /// 双方向エンディアン変換拡張関数実装クラスです

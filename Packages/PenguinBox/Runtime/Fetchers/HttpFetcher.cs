@@ -18,7 +18,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 
-namespace PenguinBox.SubModules.Fetchers
+namespace Sinoalmond.PenguinBox.Fetchers
 {
     /// <summary>
     /// HTTPまたはHTTPSを使用したアセットフェッチを行うクラスです

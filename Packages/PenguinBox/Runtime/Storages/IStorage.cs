@@ -16,7 +16,7 @@
 using System;
 using System.IO;
 
-namespace PenguinBox.SubModules.Storages
+namespace Sinoalmond.PenguinBox.Storages
 {
     /// <summary>
     /// ある特定アセットの貯蔵機能を提供するインターフェイスです

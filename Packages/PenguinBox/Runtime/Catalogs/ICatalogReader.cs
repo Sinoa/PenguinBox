@@ -13,41 +13,20 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-namespace PenguinBox.SubModules.Fetchers
+using System.IO;
+
+namespace Sinoalmond.PenguinBox.Catalogs
 {
     /// <summary>
-    /// フェッチエラーの理由を表現しています
+    /// ストリームからカタログを読み込むインターフェイスです
     /// </summary>
-    public enum FetchErrorReason
+    public interface ICatalogReader
     {
         /// <summary>
-        /// 特定不明なエラーが発生しました
+        /// 指定されたストリームからカタログを読み込みます
         /// </summary>
-        Unknown,
-
-        /// <summary>
-        /// フェッチのキャンセルをされました
-        /// </summary>
-        Cancel,
-
-        /// <summary>
-        /// フェッチの要求にタイムアウトエラーが発生しました
-        /// </summary>
-        Timeout,
-
-        /// <summary>
-        /// フェッチのリクエストにエラーが発生しました
-        /// </summary>
-        RequestError,
-
-        /// <summary>
-        /// リモートにアセットが見つかりませんでした
-        /// </summary>
-        RemoteAssetNotFound,
-
-        /// <summary>
-        /// リモートのエラーが発生しました
-        /// </summary>
-        RemoteError,
+        /// <param name="stream">カタログのデータを読み込むストリーム</param>
+        /// <returns>正常に読み込まれた場合はカタログのインスタンスを返しますが、読み込まれなかった場合は null を返します</returns>
+        ICatalog ReadCatalog(Stream stream);
     }
 }

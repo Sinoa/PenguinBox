@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PenguinBox.SubModules.Storages
+namespace Sinoalmond.PenguinBox.Storages
 {
     /// <summary>
     /// PenguinBox システムが持つストレージを管理するクラスです

@@ -13,14 +13,24 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-namespace PenguinBox.SubModules.Catalogs
+using System;
+using System.IO;
+using System.Threading;
+
+namespace Sinoalmond.PenguinBox.Fetchers
 {
-    public struct ContentCatalog
+    /// <summary>
+    /// リモートからアセットをフェッチするインターフェイスです
+    /// </summary>
+    public interface IFetcher
     {
-        public ulong Id;
-        public string Name;
-        public long Timestamp;
-        public int PackageCount;
-        public ContentPackage[] Packages;
+        /// <summary>
+        /// リモートからアセットのフェッチを行います
+        /// </summary>
+        /// <param name="remoteUri">フェッチするアセットがあるリモートURI</param>
+        /// <param name="outStream">フェッチしたアセットの出力先ストリーム</param>
+        /// <param name="listener">フェッチイベントを監視するリスナー</param>
+        /// <param name="token">フェッチのキャンセル通知をするためのトークン</param>
+        void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token);
     }
 }

@@ -15,7 +15,7 @@
 
 using System;
 
-namespace PenguinBox.SubModules.Fetchers
+namespace Sinoalmond.PenguinBox.Fetchers
 {
     /// <summary>
     /// IFetcher インターフェイスを実装したクラスからイベントを監視するリスナーのインターフェイスです

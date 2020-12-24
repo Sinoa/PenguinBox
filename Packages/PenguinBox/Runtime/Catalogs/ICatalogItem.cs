@@ -15,7 +15,7 @@
 
 using System;
 
-namespace PenguinBox.SubModules.Catalogs
+namespace Sinoalmond.PenguinBox.Catalogs
 {
     /// <summary>
     /// カタログに含まれるアイテムの情報を表現するインターフェイスです

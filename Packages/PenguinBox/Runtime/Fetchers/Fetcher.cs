@@ -17,7 +17,7 @@ using System;
 using System.IO;
 using System.Threading;
 
-namespace PenguinBox.SubModules.Fetchers
+namespace Sinoalmond.PenguinBox.Fetchers
 {
     /// <summary>
     /// IFetcher インターフェイスを実装するフェッチャーの抽象クラスです。
