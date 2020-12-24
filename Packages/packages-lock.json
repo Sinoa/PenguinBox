@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "jp.sinoa.penguinbox": {
+    "jp.sinoalmond.penguinbox": {
       "version": "file:PenguinBox",
       "depth": 0,
       "source": "embedded",
