@@ -16,47 +16,47 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Sinoalmond.PenguinBox
+namespace Sinoalmond.PenguinBox.Storages
 {
     /// <summary>
-    /// ストレージが既に存在している場合の例外クラスです
+    /// ストレージを見つけられなかった場合の例外クラスです
     /// </summary>
     [Serializable]
-    public class StorageAlreadyExistsException : PenguinBoxException
+    public class StorageNotFoundException : PenguinBoxException
     {
         /// <summary>
-        /// StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
-        public StorageAlreadyExistsException()
+        public StorageNotFoundException()
         {
         }
 
 
         /// <summary>
-        /// StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
-        public StorageAlreadyExistsException(string message) : base(message)
+        public StorageNotFoundException(string message) : base(message)
         {
         }
 
 
         /// <summary>
-        /// StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="message">例外のメッセージ</param>
         /// <param name="innerException">例外が発生した原因となった例外</param>
-        public StorageAlreadyExistsException(string message, Exception innerException) : base(message, innerException)
+        public StorageNotFoundException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
 
         /// <summary>
-        /// シリアル化したデータを使用して StorageAlreadyExistsException クラスのインスタンスを初期化します
+        /// シリアル化したデータを使用して StorageNotFoundException クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="serializationInfo">スローされている例外に関するシリアル化済みオブジェクトデータを保持している SerializationInfo</param>
         /// <param name="streamingContext">転送元または転送先についてのコンテキスト情報を含む StreamingContext</param>
-        protected StorageAlreadyExistsException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        protected StorageNotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
         }
     }
