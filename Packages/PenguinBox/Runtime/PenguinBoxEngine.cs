@@ -16,6 +16,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Sinoalmond.PenguinBox.Utilities;
+using Sinoalmond.PenguinBox.Storages;
 using UnityObject = UnityEngine.Object;
 
 namespace Sinoalmond.PenguinBox
@@ -25,6 +27,18 @@ namespace Sinoalmond.PenguinBox
     /// </summary>
     public class PenguinBoxEngine
     {
+        private readonly UriInfoCache uriInfoCache;
+        private readonly StorageManager storageManager;
+
+
+
+        public PenguinBoxEngine()
+        {
+            uriInfoCache = new UriInfoCache();
+            storageManager = new StorageManager();
+        }
+
+
         public void Update()
         {
             throw new NotImplementedException();
@@ -38,6 +52,18 @@ namespace Sinoalmond.PenguinBox
 
 
         public Task UpdateCatalogAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Task VerifyAsync()
+        {
+            return VerifyAsync(CancellationToken.None);
+        }
+
+
+        public Task VerifyAsync(CancellationToken token)
         {
             throw new NotImplementedException();
         }
