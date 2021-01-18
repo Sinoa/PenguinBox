@@ -83,6 +83,24 @@ namespace Sinoalmond.PenguinBox
 
         public Task<UnityObject> LoadAssetAsync(string assetUri, bool tryDownload, CancellationToken token)
         {
+            return LoadAssetAsync(uriInfoCache.GetOrCreateUriInfo(assetUri).Uri, tryDownload, token);
+        }
+
+
+        public Task<UnityObject> LoadAssetAsync(Uri assetUri)
+        {
+            return LoadAssetAsync(assetUri, false, CancellationToken.None);
+        }
+
+
+        public Task<UnityObject> LoadAssetAsync(Uri assetUri, bool tryDownload)
+        {
+            return LoadAssetAsync(assetUri, tryDownload, CancellationToken.None);
+        }
+
+
+        public Task<UnityObject> LoadAssetAsync(Uri assetUri, bool tryDownload, CancellationToken token)
+        {
             throw new NotImplementedException();
         }
 
