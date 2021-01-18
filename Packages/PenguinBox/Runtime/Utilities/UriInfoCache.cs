@@ -74,5 +74,27 @@ namespace Sinoalmond.PenguinBox.Utilities
             uriInfoTable[uriText] = uriInfo;
             return uriInfo;
         }
+
+
+        /// <summary>
+        /// 指定されたURIから UriInfo のインスタンスを取得します。
+        /// もし存在しない場合は、新しい UriInfo を生成しそのキャッシュを取得します。
+        /// </summary>
+        /// <param name="uri">取得したい UriInfo のURI</param>
+        /// <returns>取得または生成した UriInfo を返します</returns>
+        /// <exception cref="ArgumentNullException">uri が null です</exception>
+        public UriInfo GetOrCreateUriInfo(Uri uri)
+        {
+            var uriText = (uri ?? throw new ArgumentNullException(nameof(uri))).OriginalString;
+            if (uriInfoTable.TryGetValue(uriText, out var uriInfo))
+            {
+                return uriInfo;
+            }
+
+
+            uriInfo = new UriInfo(uri);
+            uriInfoTable[uriText] = uriInfo;
+            return uriInfo;
+        }
     }
 }
