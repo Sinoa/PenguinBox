@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Sinoalmond.PenguinBox.Utilities
+namespace Sinoalmond.PenguinBox.Cores
 {
     /// <summary>
     /// UriInfo インスタンスの生成コストを回避するために、極力キャッシュから取り出せるようにするためのキャッシュクラスです。

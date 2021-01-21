@@ -16,7 +16,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Sinoalmond.PenguinBox.Utilities;
+using Sinoalmond.PenguinBox.Cores;
 using Sinoalmond.PenguinBox.Storages;
 using UnityObject = UnityEngine.Object;
 

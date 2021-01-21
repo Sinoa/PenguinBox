@@ -13,8 +13,6 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System;
-
 namespace Sinoalmond.PenguinBox.Utilities
 {
     /// <summary>
@@ -55,7 +53,7 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// </remarks>
         /// <param name="buffer">計算する対象のバッファ</param>
         /// <returns>計算された結果を返します</returns>
-        /// <exception cref="ArgumentNullException">buffer が null です</exception>
+        /// <exception cref="System.ArgumentNullException">buffer が null です</exception>
         public static unsafe ulong Calculate(byte[] buffer)
         {
             fixed (byte* p = buffer)
@@ -75,19 +73,19 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// <param name="index">バッファの開始位置</param>
         /// <param name="count">バッファから取り出す量</param>
         /// <returns>計算された結果を返します</returns>
-        /// <exception cref="ArgumentNullException">buffer が null です</exception>
-        /// <exception cref="ArgumentOutOfRangeException">index または index, count 合計値がbufferの範囲を超えます</exception>
+        /// <exception cref="System.ArgumentNullException">buffer が null です</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">index または index, count 合計値がbufferの範囲を超えます</exception>
         public static unsafe ulong Calculate(byte[] buffer, int index, int count)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer));
+                throw new System.ArgumentNullException(nameof(buffer));
             }
 
 
             if (index < 0 || buffer.Length <= index + count)
             {
-                throw new ArgumentOutOfRangeException($"{nameof(index)} or {nameof(count)}", $"指定された範囲では {nameof(buffer)} の範囲を超えます");
+                throw new System.ArgumentOutOfRangeException($"{nameof(index)} or {nameof(count)}", $"指定された範囲では {nameof(buffer)} の範囲を超えます");
             }
 
 
@@ -107,7 +105,7 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// <param name="buffer">計算する対象のポインタ</param>
         /// <param name="count">計算するバイトの数</param>
         /// <returns>計算された結果を返します</returns>
-        /// <exception cref="ArgumentNullException">buffer が null です</exception>
+        /// <exception cref="System.ArgumentNullException">buffer が null です</exception>
         public static unsafe ulong Calculate(byte* buffer, int count)
         {
             return Calculate(ulong.MaxValue, buffer, count) ^ ulong.MaxValue;
@@ -124,7 +122,7 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// <param name="continusHash">前回計算したハッシュ値、存在しない場合は既定値を指定</param>
         /// <param name="buffer">計算する対象のバッファ</param>
         /// <returns>CRC計算された結果を返します</returns>
-        /// <exception cref="ArgumentNullException">buffer が null です</exception>
+        /// <exception cref="System.ArgumentNullException">buffer が null です</exception>
         public static unsafe ulong Calculate(ulong continusHash, byte[] buffer)
         {
             fixed (byte* p = buffer)
@@ -146,19 +144,19 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// <param name="index">バッファの開始位置</param>
         /// <param name="count">バッファから取り出す量</param>
         /// <returns>CRC計算された結果を返します</returns>
-        /// <exception cref="ArgumentNullException">buffer が null です</exception>
-        /// <exception cref="ArgumentOutOfRangeException">index または index, count 合計値がbufferの範囲を超えます</exception>
+        /// <exception cref="System.ArgumentNullException">buffer が null です</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">index または index, count 合計値がbufferの範囲を超えます</exception>
         public static unsafe ulong Calculate(ulong continusHash, byte[] buffer, int index, int count)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer));
+                throw new System.ArgumentNullException(nameof(buffer));
             }
 
 
             if (index < 0 || buffer.Length <= index + count)
             {
-                throw new ArgumentOutOfRangeException($"{nameof(index)} or {nameof(count)}", $"指定された範囲では {nameof(buffer)} の範囲を超えます");
+                throw new System.ArgumentOutOfRangeException($"{nameof(index)} or {nameof(count)}", $"指定された範囲では {nameof(buffer)} の範囲を超えます");
             }
 
 
@@ -180,12 +178,12 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// <param name="buffer">計算する対象のバッファのポインタ</param>
         /// <param name="count">バッファから取り出す量</param>
         /// <returns>CRC計算された結果を返します</returns>
-        /// <exception cref="ArgumentNullException">buffer が null です</exception>
+        /// <exception cref="System.ArgumentNullException">buffer が null です</exception>
         public static unsafe ulong Calculate(ulong continusHash, byte* buffer, int count)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException(nameof(buffer));
+                throw new System.ArgumentNullException(nameof(buffer));
             }
 
 

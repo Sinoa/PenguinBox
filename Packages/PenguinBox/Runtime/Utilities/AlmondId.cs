@@ -13,9 +13,6 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System;
-using System.Threading;
-
 namespace Sinoalmond.PenguinBox.Utilities
 {
     /// <summary>
@@ -35,7 +32,7 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// この値はソースコードをコピーして実装者側で自由に変えて良い。
         /// ただし、内部でタイムスタンプを計算する際に UTC+0 を用いることに注意して下さい。
         /// </remarks>
-        public static readonly DateTimeOffset OffsetTimestamp = new DateTimeOffset(2021, 1, 1, 0, 0, 0, 0, TimeSpan.Zero);
+        public static readonly System.DateTimeOffset OffsetTimestamp = new System.DateTimeOffset(2021, 1, 1, 0, 0, 0, 0, System.TimeSpan.Zero);
 
         private readonly int workerId;
         private long lastFetchedTimestamp;
@@ -47,13 +44,13 @@ namespace Sinoalmond.PenguinBox.Utilities
         /// AlmondId クラスのインスタンスを初期化します
         /// </summary>
         /// <param name="workerId">この AlmondId が担当する生成するワーカーID</param>
-        /// <exception cref="ArgumentOutOfRangeException">workerId が 0 から WorkerIdMask の範囲外です。</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">workerId が 0 から WorkerIdMask の範囲外です。</exception>
         public AlmondId(int workerId)
         {
             if (workerId < 0 || (int)WorkerIdMask < workerId)
             {
                 var message = $"workerId が 0 から WorkerIdMask の範囲外です。 workerId='{workerId}'";
-                throw new ArgumentOutOfRangeException(message);
+                throw new System.ArgumentOutOfRangeException(message);
             }
 
 
@@ -72,7 +69,7 @@ namespace Sinoalmond.PenguinBox.Utilities
             var timestamp = GetTimestamp();
             while (timestamp < lastFetchedTimestamp)
             {
-                Thread.Sleep(0);
+                System.Threading.Thread.Sleep(0);
                 timestamp = GetTimestamp();
             }
 
@@ -87,7 +84,7 @@ namespace Sinoalmond.PenguinBox.Utilities
 
                 while (timestamp <= lastFetchedTimestamp)
                 {
-                    Thread.Sleep(0);
+                    System.Threading.Thread.Sleep(0);
                     timestamp = GetTimestamp();
                 }
             }
@@ -101,7 +98,7 @@ namespace Sinoalmond.PenguinBox.Utilities
 
         private long GetTimestamp()
         {
-            return (long)(DateTimeOffset.UtcNow - OffsetTimestamp).TotalMilliseconds;
+            return (long)(System.DateTimeOffset.UtcNow - OffsetTimestamp).TotalMilliseconds;
         }
 
 

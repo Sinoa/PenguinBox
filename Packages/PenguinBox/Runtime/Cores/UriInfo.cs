@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Sinoalmond.PenguinBox.Utilities
+namespace Sinoalmond.PenguinBox.Cores
 {
     /// <summary>
     /// Uri と クエリ文字列テーブル を保持した構造体です
