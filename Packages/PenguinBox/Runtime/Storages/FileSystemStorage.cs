@@ -15,6 +15,7 @@
 
 using System;
 using System.IO;
+using Sinoalmond.PenguinBox.Cores;
 
 namespace Sinoalmond.PenguinBox.Storages
 {
@@ -47,7 +48,7 @@ namespace Sinoalmond.PenguinBox.Storages
         /// <param name="assetUri">確認をするアセットのURI</param>
         /// <returns>指定されたアセットURIにファイルまたはディレクトリがあれば true を、どちらも存在しない場合は false を返します</returns>
         /// <exception cref="ArgumentNullException">assetUri が null です</exception>
-        public bool Exists(Uri assetUri)
+        public bool Exists(UriInfo assetUri)
         {
             var nativePath = GetNativePath(assetUri);
             return File.Exists(nativePath) || Directory.Exists(nativePath);
@@ -63,7 +64,7 @@ namespace Sinoalmond.PenguinBox.Storages
         /// <param name="access">指定されたアセットURIに対するアクセス方法</param>
         /// <returns>正しくストリームを開けた場合はストリームの参照を返します。開けなかった場合は null を返します</returns>
         /// <exception cref="ArgumentNullException">assetUri が null です</exception>
-        public Stream Open(Uri assetUri, FileMode mode, FileAccess access)
+        public Stream Open(UriInfo assetUri, FileMode mode, FileAccess access)
         {
             var nativePath = GetNativePath(assetUri);
             var fileName = Path.GetFileName(nativePath);
@@ -85,7 +86,7 @@ namespace Sinoalmond.PenguinBox.Storages
         /// </summary>
         /// <param name="assetUri">削除するアセットのURI</param>
         /// <exception cref="ArgumentNullException">assetUri が null です</exception>
-        public void Delete(Uri assetUri)
+        public void Delete(UriInfo assetUri)
         {
             var nativePath = GetNativePath(assetUri);
             if (File.Exists(nativePath))
@@ -128,9 +129,9 @@ namespace Sinoalmond.PenguinBox.Storages
         /// <param name="assetUri">ファイルパスとして取得するアセットURI</param>
         /// <returns>指定されたアセットURIからファイルシステムとしてのファイルパスを返します</returns>
         /// <exception cref="ArgumentNullException">assetUri が null です</exception>
-        public string GetNativePath(Uri assetUri)
+        public string GetNativePath(UriInfo assetUri)
         {
-            var uriAbsolutePath = (assetUri ?? throw new ArgumentNullException(nameof(assetUri))).AbsolutePath.TrimStart('/');
+            var uriAbsolutePath = (assetUri ?? throw new ArgumentNullException(nameof(assetUri))).Uri.AbsolutePath.TrimStart('/');
             return Path.Combine(GetBaseDirectoryPath(), uriAbsolutePath).Replace("\\", "/");
         }
 

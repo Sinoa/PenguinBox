@@ -19,9 +19,9 @@ using System.Collections.Generic;
 namespace Sinoalmond.PenguinBox.Cores
 {
     /// <summary>
-    /// Uri と クエリ文字列テーブル を保持した構造体です
+    /// Uri と クエリ文字列テーブル を保持したクラスです
     /// </summary>
-    public readonly struct UriInfo : IEquatable<UriInfo>
+    public class UriInfo : IEquatable<UriInfo>
     {
         private static readonly char[] StringSplitPattern = new char[] { '&' };
 
@@ -38,17 +38,49 @@ namespace Sinoalmond.PenguinBox.Cores
 
 
         /// <summary>
-        /// UriInfo 構造体のインスタンスを初期化します
+        /// UriInfo クラスのインスタンスを初期化します
         /// </summary>
-        /// <param name="uri"></param>
-        public UriInfo(Uri uri)
+        /// <param name="uriText">URIを表す文字列</param>
+        /// <exception cref="ArgumentNullException">uriText が null です。</exception>
+        /// <exception cref="ArgumentException">uriText が使用可能なURI形式ではありません。</exception>
+        public UriInfo(string uriText)
         {
-            this.uri = uri;
+            queryTable = new Dictionary<string, string>();
+            if (!Uri.TryCreate(uriText ?? throw new ArgumentNullException(nameof(uriText)), UriKind.Absolute, out uri))
+            {
+                var message = $"{nameof(uriText)} が使用可能なURI形式ではありません。";
+                throw new ArgumentException(message, nameof(uriText));
+            }
 
 
+            InitializeCommon();
+        }
+
+
+        /// <summary>
+        /// UriInfo クラスのインスタンスを初期化します
+        /// </summary>
+        /// <param name="originalUri">URIを表すURIインスタンス</param>
+        /// <exception cref="ArgumentException">指定された URI は絶対URI形式ではありません。</exception>
+        public UriInfo(Uri originalUri)
+        {
+            queryTable = new Dictionary<string, string>();
+            if (!originalUri.IsAbsoluteUri)
+            {
+                var message = "指定された URI は絶対URI形式ではありません。";
+                throw new ArgumentException(message, nameof(originalUri));
+            }
+
+
+            uri = originalUri;
+            InitializeCommon();
+        }
+
+
+        private void InitializeCommon()
+        {
             var queryString = Uri.UnescapeDataString(uri.Query.TrimStart('?'));
             var queries = queryString.Split(StringSplitPattern, StringSplitOptions.RemoveEmptyEntries);
-            queryTable = new Dictionary<string, string>();
             foreach (var query in queries)
             {
                 var keyValue = query.Split('=');
