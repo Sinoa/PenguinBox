@@ -34,7 +34,6 @@ namespace Sinoalmond.PenguinBox.Fetchers
         /// <exception cref="ArgumentNullException">remoteUri または outStream または listener が null です</exception>
         /// <exception cref="NotSupportedException">出力ストリームの書き込みが出来ません</exception>
         /// <exception cref="NotSupportedException">指定されたスキームをサポートしていません</exception>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<保留中>")]
         public void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
         {
             ThrowIfArgumentNull(remoteUri, nameof(remoteUri));

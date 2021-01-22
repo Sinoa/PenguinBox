@@ -13,7 +13,7 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-namespace Sinoalmond.PenguinBox.Contents
+namespace Sinoalmond.PenguinBox.Cores
 {
     /// <summary>
     /// 単位コンテンツデータの情報を保持した構造体です
@@ -24,6 +24,11 @@ namespace Sinoalmond.PenguinBox.Contents
         /// コンテンツ名
         /// </summary>
         public readonly string Name;
+
+        /// <summary>
+        /// コンテンツの配信サイズ
+        /// </summary>
+        public readonly long Length;
 
         /// <summary>
         /// コンテンツの配信タイムスタンプ（ミリ秒）
@@ -58,14 +63,16 @@ namespace Sinoalmond.PenguinBox.Contents
         /// ContentItem 構造体のインスタンスを初期化します
         /// </summary>
         /// <param name="name">コンテンツ名</param>
+        /// <param name="length">コンテンツの配信サイズ</param>
         /// <param name="timestamp">コンテンツ配信タイムスタンプ</param>
         /// <param name="remoteUri">コンテンツリモートURI</param>
         /// <param name="localUri">コンテンツ配置ローカルURI</param>
         /// <param name="digest">コンテンツメッセージダイジェスト</param>
         /// <param name="dependentContentName">依存するコンテンツ名</param>
-        public ContentItem(string name, long timestamp, string remoteUri, string localUri, byte[] digest, string[] dependentContentName)
+        public ContentItem(string name, long length, long timestamp, string remoteUri, string localUri, byte[] digest, string[] dependentContentName)
         {
             Name = name;
+            Length = length;
             Timestamp = timestamp;
             RemoteUri = remoteUri;
             LocalUri = localUri;
