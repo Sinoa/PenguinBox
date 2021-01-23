@@ -13,9 +13,9 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System;
 using System.IO;
 using System.Threading;
+using Sinoalmond.PenguinBox.Cores;
 
 namespace Sinoalmond.PenguinBox.Fetchers
 {
@@ -31,6 +31,6 @@ namespace Sinoalmond.PenguinBox.Fetchers
         /// <param name="outStream">フェッチしたアセットの出力先ストリーム</param>
         /// <param name="listener">フェッチイベントを監視するリスナー</param>
         /// <param name="token">フェッチのキャンセル通知をするためのトークン</param>
-        void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token);
+        void Fetch(UriInfo remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token);
     }
 }

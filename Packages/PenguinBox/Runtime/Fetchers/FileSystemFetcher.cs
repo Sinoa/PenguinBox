@@ -16,6 +16,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using Sinoalmond.PenguinBox.Cores;
 
 namespace Sinoalmond.PenguinBox.Fetchers
 {
@@ -24,15 +25,15 @@ namespace Sinoalmond.PenguinBox.Fetchers
     /// </summary>
     public class FileSystemFetcher : Fetcher
     {
-        protected override bool CanSchemeSupport(Uri remoteUri)
+        protected override bool CanSchemeSupport(UriInfo remoteUri)
         {
-            return remoteUri.Scheme == Uri.UriSchemeFile;
+            return remoteUri.Uri.Scheme == Uri.UriSchemeFile;
         }
 
 
-        protected override void FetchCore(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
+        protected override void FetchCore(UriInfo remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
         {
-            var filePath = remoteUri.LocalPath;
+            var filePath = remoteUri.Uri.LocalPath;
             if (!File.Exists(filePath))
             {
                 listener.OnError(FetchErrorReason.RemoteAssetNotFound, null);

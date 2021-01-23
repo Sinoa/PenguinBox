@@ -16,6 +16,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using Sinoalmond.PenguinBox.Cores;
 
 namespace Sinoalmond.PenguinBox.Fetchers
 {
@@ -34,7 +35,7 @@ namespace Sinoalmond.PenguinBox.Fetchers
         /// <exception cref="ArgumentNullException">remoteUri または outStream または listener が null です</exception>
         /// <exception cref="NotSupportedException">出力ストリームの書き込みが出来ません</exception>
         /// <exception cref="NotSupportedException">指定されたスキームをサポートしていません</exception>
-        public void Fetch(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
+        public void Fetch(UriInfo remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
         {
             ThrowIfArgumentNull(remoteUri, nameof(remoteUri));
             ThrowIfArgumentNull(outStream, nameof(outStream));
@@ -62,10 +63,10 @@ namespace Sinoalmond.PenguinBox.Fetchers
         }
 
 
-        protected abstract bool CanSchemeSupport(Uri remoteUri);
+        protected abstract bool CanSchemeSupport(UriInfo remoteUri);
 
 
-        protected abstract void FetchCore(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token);
+        protected abstract void FetchCore(UriInfo remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token);
 
 
         #region Exception thrower and builder
@@ -88,11 +89,11 @@ namespace Sinoalmond.PenguinBox.Fetchers
         }
 
 
-        private void ThrowIfSchemeNotSupported(Uri uri)
+        private void ThrowIfSchemeNotSupported(UriInfo uri)
         {
             if (!CanSchemeSupport(uri))
             {
-                var message = $"指定されたスキーム '{uri.Scheme}' は対応していません。";
+                var message = $"指定されたスキーム '{uri.Uri.Scheme}' は対応していません。";
                 throw new NotSupportedException(message);
             }
         }

@@ -17,6 +17,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading;
+using Sinoalmond.PenguinBox.Cores;
 
 namespace Sinoalmond.PenguinBox.Fetchers
 {
@@ -61,15 +62,16 @@ namespace Sinoalmond.PenguinBox.Fetchers
         }
 
 
-        protected override bool CanSchemeSupport(Uri remoteUri)
+        protected override bool CanSchemeSupport(UriInfo remoteUri)
         {
-            return remoteUri.Scheme == Uri.UriSchemeHttp || remoteUri.Scheme == Uri.UriSchemeHttps;
+            var scheme = remoteUri.Uri.Scheme;
+            return scheme == Uri.UriSchemeHttp || scheme == Uri.UriSchemeHttps;
         }
 
 
-        protected override void FetchCore(Uri remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
+        protected override void FetchCore(UriInfo remoteUri, Stream outStream, IFetcherEventListener listener, CancellationToken token)
         {
-            var request = CreateRequest(remoteUri);
+            var request = CreateRequest(remoteUri.Uri);
             if (!TryGetResponse(request, out var response, out var error))
             {
                 if (error.Status == WebExceptionStatus.Timeout)
