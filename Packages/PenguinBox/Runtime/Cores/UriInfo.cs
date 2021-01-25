@@ -90,6 +90,17 @@ namespace Sinoalmond.PenguinBox.Cores
 
 
         /// <summary>
+        /// 指定されたキー名がクエリに含まれるか否かを確認します
+        /// </summary>
+        /// <param name="keyName">確認するキー名</param>
+        /// <returns>キーが含まれる場合は true を、含まれない場合は false を返します</returns>
+        public bool ContainsKey(string keyName)
+        {
+            return queryTable.ContainsKey(keyName);
+        }
+
+
+        /// <summary>
         /// クエリからキー名に対応する値を取得します
         /// </summary>
         /// <param name="keyName">取得する値のキー</param>

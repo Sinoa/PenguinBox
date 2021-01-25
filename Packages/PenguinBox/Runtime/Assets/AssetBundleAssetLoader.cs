@@ -14,14 +14,27 @@
 // 3. This notice may not be removed or altered from any source distribution.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Sinoalmond.PenguinBox.Cores;
+using UnityObject = UnityEngine.Object;
 
-namespace Packages.PenguinBox.Runtime.Cores
+namespace Sinoalmond.PenguinBox.Assets
 {
-    class IContentReader
+    /// <summary>
+    /// Unity AssetBundle からアセットをロードする機能を提供します
+    /// </summary>
+    public class AssetBundleAssetLoader : AssetLoader
     {
+        protected override bool CanUriSupport(UriInfo assetUri)
+        {
+            return assetUri.Uri.Host == "assetbundle" && assetUri.ContainsKey("name");
+        }
+
+
+        protected override Task<T> LoadAssetCoreAsync<T>(UriInfo assetUri, IAssetLoadEventListener listener, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

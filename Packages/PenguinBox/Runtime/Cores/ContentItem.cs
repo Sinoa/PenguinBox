@@ -16,9 +16,9 @@
 namespace Sinoalmond.PenguinBox.Cores
 {
     /// <summary>
-    /// 単位コンテンツデータの情報を保持した構造体です
+    /// 単位コンテンツデータの情報を保持したクラスです
     /// </summary>
-    public readonly struct ContentItem
+    public class ContentItem
     {
         /// <summary>
         /// コンテンツ名
@@ -57,6 +57,11 @@ namespace Sinoalmond.PenguinBox.Cores
         /// </summary>
         public readonly string[] DependentContentNames;
 
+        /// <summary>
+        /// このコンテンツに対応する追加情報
+        /// </summary>
+        public readonly byte[] UserData;
+
 
 
         /// <summary>
@@ -69,7 +74,8 @@ namespace Sinoalmond.PenguinBox.Cores
         /// <param name="localUri">コンテンツ配置ローカルURI</param>
         /// <param name="digest">コンテンツメッセージダイジェスト</param>
         /// <param name="dependentContentName">依存するコンテンツ名</param>
-        public ContentItem(string name, long length, long timestamp, string remoteUri, string localUri, byte[] digest, string[] dependentContentName)
+        /// <param name="UserData">このコンテンツアイテムに対応する追加情報</param>
+        public ContentItem(string name, long length, long timestamp, string remoteUri, string localUri, byte[] digest, string[] dependentContentName, byte[] userData)
         {
             Name = name;
             Length = length;
@@ -78,6 +84,7 @@ namespace Sinoalmond.PenguinBox.Cores
             LocalUri = localUri;
             Digest = digest;
             DependentContentNames = dependentContentName;
+            UserData = userData;
         }
     }
 }

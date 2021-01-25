@@ -13,15 +13,26 @@
 // 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Sinoalmond.PenguinBox.Cores;
+using UnityObject = UnityEngine.Object;
 
-namespace Packages.PenguinBox.Runtime.Cores
+namespace Sinoalmond.PenguinBox.Assets
 {
-    class IContentReader
+    /// <summary>
+    /// Unity のアセットをロードするインターフェイスです
+    /// </summary>
+    public interface IAssetLoader
     {
+        /// <summary>
+        /// アセットURIをもとにアセットを非同期でロードします
+        /// </summary>
+        /// </summary>
+        /// <param name="assetUri">ロードするアセットのURI</param>
+        /// <param name="listener">ロードイベントを監視するリスナー</param>
+        /// <param name="token">ロードのキャンセル通知をするためのトークン</param>
+        /// <returns>非同期ロード操作を表すタスクを返します</returns>
+        Task<T> LoadAssetAsync<T>(UriInfo assetUri, IAssetLoadEventListener listener, CancellationToken token) where T : UnityObject;
     }
 }
